@@ -1,5 +1,5 @@
 {
-  "name": "finbonacci-swr",
+  "name": "fibonacci-swr",
   "private": true,
   "scripts": {
     "dev": "next dev",
