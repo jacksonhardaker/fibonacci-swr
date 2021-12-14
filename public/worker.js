@@ -5,6 +5,8 @@ const fibonacci = (num) => {
 };
 
 onmessage = function(e) {
+  console.log(`%cReceived [${e.data}] and calculating Fibonacci number...`, "color: blue;");
   const fib = fibonacci(e.data)
+  console.log(`%cCalculated and posting Fibonacci number [${fib}]...`, "color: purple;");
   postMessage(fib);
 }
