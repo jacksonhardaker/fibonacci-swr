@@ -1,7 +1,18 @@
-import '../styles/globals.css'
+import { createContext, useEffect, useState } from "react";
+import "../styles/globals.css";
+
+export const ctx = createContext();
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  const[worker, setWorker] = useState(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.Worker) {
+      setWorker(new Worker("worker.js"));
+    }
+  }, []);
+
+  return <ctx.Provider value={worker}><Component {...pageProps} /></ctx.Provider>;
 }
 
-export default MyApp
+export default MyApp;
