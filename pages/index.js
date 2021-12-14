@@ -1,5 +1,5 @@
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
-import useSWR from "swr";
+import useSWR from "swr/immutable";
 import { ctx } from "./_app";
 
 const fetcherMachine = (worker) => async (num) => {
@@ -24,13 +24,13 @@ const Loading = () => {
 
   useEffect(() => {
     clearTimeout(timeout.current);
-    
+
     timeout.current = setTimeout(() => {
       setDots((d) => (d.length === 6 ? "" : d + "."));
     }, 200);
 
     return () => {
-      clearTimeout(timeout);
+      clearTimeout(timeout.current);
     };
   }, [dots]);
 
